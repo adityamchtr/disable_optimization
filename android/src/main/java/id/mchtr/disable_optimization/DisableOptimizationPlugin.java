@@ -107,11 +107,11 @@ public class DisableOptimizationPlugin implements FlutterPlugin, MethodCallHandl
 
     public boolean getAutoStart() {
         boolean isAutoStartAvailable = KillerManager.isActionAvailable(mContext, KillerManager.Actions.ACTION_AUTOSTART);
-        return !isAutoStartAvailable;
+        return isAutoStartAvailable;
     }
 
     public boolean getBatteryOptimization() {
         boolean isBatteryOptimizationAvailable = KillerManager.isActionAvailable(mContext, KillerManager.Actions.ACTION_POWER_SAVING);
-        return !isBatteryOptimizationAvailable;
+        return isBatteryOptimizationAvailable;
     }
 }
