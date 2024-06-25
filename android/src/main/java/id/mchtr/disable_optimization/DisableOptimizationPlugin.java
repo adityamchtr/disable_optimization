@@ -97,11 +97,15 @@ public class DisableOptimizationPlugin implements FlutterPlugin, MethodCallHandl
     }
 
     private void showIgnoreBatteryPermissions() {
-        final Intent ignoreBatteryOptimizationsIntent = BatteryOptimizationUtil.getIgnoreBatteryOptimizationsIntent(mContext);
-        if (ignoreBatteryOptimizationsIntent != null) {
-            mContext.startActivity(ignoreBatteryOptimizationsIntent);
+        if (!BatteryOptimizationUtil.isIgnoringBatteryOptimizations(mContext)) {
+            final Intent ignoreBatteryOptimizationsIntent = BatteryOptimizationUtil.getIgnoreBatteryOptimizationsIntent(mContext);
+            if (ignoreBatteryOptimizationsIntent != null) {
+                mContext.startActivity(ignoreBatteryOptimizationsIntent);
+            } else {
+                Log.i(TAG, "Can't ignore the battery optimization as the intent is null");
+            }
         } else {
-            Log.i(TAG, "Can't ignore the battery optimization as the intent is null");
+            Log.i(TAG, "Battery optimization is already disabled");
         }
     }
 
